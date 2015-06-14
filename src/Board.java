@@ -22,6 +22,9 @@ Location currentShape[];
 			}
 		}
 		currentShape = new Location[4];
+		for(int i = 0; i < 4; i++){
+			currentShape[i] = new Location();
+		}
 	}
 	
 	public String toString(){
@@ -35,13 +38,13 @@ Location currentShape[];
 		
 		return bd; 
 	}
-	@SuppressWarnings("unused")
+
 	private void pickColor(){
-		currentColor = ((int) (Math.random() * 5));
+		currentColor = ((int) (Math.random() * 4)) + 1;
 	}
-	@SuppressWarnings("unused")
+	
 	private void pickShape(){
-		int tmp = ((int) (Math.random() * 3));
+		int tmp = ((int) (Math.random() * 5));
 		
 		switch(tmp){
 		//CASE 0: 2X2 BLOCK
@@ -65,8 +68,8 @@ Location currentShape[];
 		//CASE 3: INDENT BLOCK A
 		case 3: currentShape[0].setXY(0,4);
 				currentShape[1].setXY(0,5);
-				currentShape[2].setXY(1,3);
-				currentShape[3].setXY(1,2);
+				currentShape[2].setXY(1,4);
+				currentShape[3].setXY(1,3);
 				break;
 		//CASE 3: INDENT BLOCK B
 		case 4: currentShape[0].setXY(0,4);
@@ -79,13 +82,38 @@ Location currentShape[];
 	}
 	
 	public boolean addShape(){
-		boolean verify = false;
+		boolean verify = true;
 		
 		pickColor();
 		pickShape();
 		
 		//BEGIN VALIDATION
-		
+		if(board[currentShape[0].getX()][currentShape[0].getY()]
+				!= EMPTY){
+			verify = false;
+		}
+		if(board[currentShape[1].getX()][currentShape[1].getY()]
+				!= EMPTY){
+			verify = false;
+		}
+		if(board[currentShape[2].getX()][currentShape[2].getY()]
+				!= EMPTY){
+			verify = false;
+		}
+		if(board[currentShape[3].getX()][currentShape[3].getY()]
+				!= EMPTY){
+			verify = false;
+		}
+		if(verify){
+			board[currentShape[0].getX()][currentShape[0].getY()] = 
+					currentColor;
+			board[currentShape[1].getX()][currentShape[1].getY()] = 
+					currentColor;
+			board[currentShape[2].getX()][currentShape[2].getY()] =
+					currentColor;
+			board[currentShape[3].getX()][currentShape[3].getY()] = 
+					currentColor;
+		}
 		//END VALIDATION
 		//BEGIN SETTING
 		

@@ -14,7 +14,13 @@ public class Testing {
 			System.out.println(rand);
 		}
 		*/
-
+		boolean test = bd.addShape();
+		System.out.println(bd.toString());
+		System.out.println(test);
+		
+		test = bd.addShape();
+		System.out.println(bd.toString());
+		System.out.println(test);
 	}
 
 }
